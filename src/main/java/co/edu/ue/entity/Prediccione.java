@@ -4,6 +4,7 @@ import java.io.Serializable;
 import jakarta.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.sql.Timestamp;
 
 
 /**
@@ -20,22 +21,36 @@ public class Prediccione implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 
-	private BigDecimal confianza;
+	@Column(name="algoritmo_usado")
+	private String algoritmoUsado;
 
-	@Column(name="demanda_esperada")
-	private int demandaEsperada;
+	private Timestamp creado;
 
 	@Temporal(TemporalType.DATE)
-	private Date fecha;
+	@Column(name="fecha_prediccion")
+	private Date fechaPrediccion;
 
-	private String periodo;
+	@Column(name="nivel_confianza")
+	private BigDecimal nivelConfianza;
+
+	@Column(name="periodo_objetivo")
+	private String periodoObjetivo;
 
 	private BigDecimal tendencia;
 
+	@Column(name="tipo_prediccion")
+	private String tipoPrediccion;
+
+	@Column(name="valor_predicho")
+	private BigDecimal valorPredicho;
+
 	//bi-directional many-to-one association to Producto
 	@ManyToOne
-	@JoinColumn(name="id_producto")
 	private Producto producto;
+
+	//bi-directional many-to-one association to Usuario
+	@ManyToOne
+	private Usuario usuario;
 
 	public Prediccione() {
 	}
@@ -48,36 +63,44 @@ public class Prediccione implements Serializable {
 		this.id = id;
 	}
 
-	public BigDecimal getConfianza() {
-		return this.confianza;
+	public String getAlgoritmoUsado() {
+		return this.algoritmoUsado;
 	}
 
-	public void setConfianza(BigDecimal confianza) {
-		this.confianza = confianza;
+	public void setAlgoritmoUsado(String algoritmoUsado) {
+		this.algoritmoUsado = algoritmoUsado;
 	}
 
-	public int getDemandaEsperada() {
-		return this.demandaEsperada;
+	public Timestamp getCreado() {
+		return this.creado;
 	}
 
-	public void setDemandaEsperada(int demandaEsperada) {
-		this.demandaEsperada = demandaEsperada;
+	public void setCreado(Timestamp creado) {
+		this.creado = creado;
 	}
 
-	public Date getFecha() {
-		return this.fecha;
+	public Date getFechaPrediccion() {
+		return this.fechaPrediccion;
 	}
 
-	public void setFecha(Date fecha) {
-		this.fecha = fecha;
+	public void setFechaPrediccion(Date fechaPrediccion) {
+		this.fechaPrediccion = fechaPrediccion;
 	}
 
-	public String getPeriodo() {
-		return this.periodo;
+	public BigDecimal getNivelConfianza() {
+		return this.nivelConfianza;
 	}
 
-	public void setPeriodo(String periodo) {
-		this.periodo = periodo;
+	public void setNivelConfianza(BigDecimal nivelConfianza) {
+		this.nivelConfianza = nivelConfianza;
+	}
+
+	public String getPeriodoObjetivo() {
+		return this.periodoObjetivo;
+	}
+
+	public void setPeriodoObjetivo(String periodoObjetivo) {
+		this.periodoObjetivo = periodoObjetivo;
 	}
 
 	public BigDecimal getTendencia() {
@@ -88,12 +111,36 @@ public class Prediccione implements Serializable {
 		this.tendencia = tendencia;
 	}
 
+	public String getTipoPrediccion() {
+		return this.tipoPrediccion;
+	}
+
+	public void setTipoPrediccion(String tipoPrediccion) {
+		this.tipoPrediccion = tipoPrediccion;
+	}
+
+	public BigDecimal getValorPredicho() {
+		return this.valorPredicho;
+	}
+
+	public void setValorPredicho(BigDecimal valorPredicho) {
+		this.valorPredicho = valorPredicho;
+	}
+
 	public Producto getProducto() {
 		return this.producto;
 	}
 
 	public void setProducto(Producto producto) {
 		this.producto = producto;
+	}
+
+	public Usuario getUsuario() {
+		return this.usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 
 }

@@ -4,6 +4,7 @@ import java.io.Serializable;
 import jakarta.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.sql.Timestamp;
 
 
 /**
@@ -22,15 +23,31 @@ public class Venta implements Serializable {
 
 	private int cantidad;
 
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date fecha;
+	private Timestamp creado;
 
-	private BigDecimal total;
+	@Temporal(TemporalType.DATE)
+	@Column(name="fecha_venta")
+	private Date fechaVenta;
+
+	@Column(name="monto_total")
+	private BigDecimal montoTotal;
+
+	@Column(name="nombre_cliente")
+	private String nombreCliente;
+
+	@Lob
+	private String notas;
+
+	@Column(name="precio_unitario")
+	private BigDecimal precioUnitario;
 
 	//bi-directional many-to-one association to Producto
 	@ManyToOne
-	@JoinColumn(name="id_producto")
 	private Producto producto;
+
+	//bi-directional many-to-one association to Usuario
+	@ManyToOne
+	private Usuario usuario;
 
 	public Venta() {
 	}
@@ -51,20 +68,52 @@ public class Venta implements Serializable {
 		this.cantidad = cantidad;
 	}
 
-	public Date getFecha() {
-		return this.fecha;
+	public Timestamp getCreado() {
+		return this.creado;
 	}
 
-	public void setFecha(Date fecha) {
-		this.fecha = fecha;
+	public void setCreado(Timestamp creado) {
+		this.creado = creado;
 	}
 
-	public BigDecimal getTotal() {
-		return this.total;
+	public Date getFechaVenta() {
+		return this.fechaVenta;
 	}
 
-	public void setTotal(BigDecimal total) {
-		this.total = total;
+	public void setFechaVenta(Date fechaVenta) {
+		this.fechaVenta = fechaVenta;
+	}
+
+	public BigDecimal getMontoTotal() {
+		return this.montoTotal;
+	}
+
+	public void setMontoTotal(BigDecimal montoTotal) {
+		this.montoTotal = montoTotal;
+	}
+
+	public String getNombreCliente() {
+		return this.nombreCliente;
+	}
+
+	public void setNombreCliente(String nombreCliente) {
+		this.nombreCliente = nombreCliente;
+	}
+
+	public String getNotas() {
+		return this.notas;
+	}
+
+	public void setNotas(String notas) {
+		this.notas = notas;
+	}
+
+	public BigDecimal getPrecioUnitario() {
+		return this.precioUnitario;
+	}
+
+	public void setPrecioUnitario(BigDecimal precioUnitario) {
+		this.precioUnitario = precioUnitario;
 	}
 
 	public Producto getProducto() {
@@ -73,6 +122,14 @@ public class Venta implements Serializable {
 
 	public void setProducto(Producto producto) {
 		this.producto = producto;
+	}
+
+	public Usuario getUsuario() {
+		return this.usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 
 }

@@ -3,6 +3,7 @@ package co.edu.ue.entity;
 import java.io.Serializable;
 import jakarta.persistence.*;
 import java.math.BigDecimal;
+import java.sql.Timestamp;
 import java.util.List;
 
 
@@ -20,15 +21,25 @@ public class Producto implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 
-	private String categoria;
+	private Timestamp actualizado;
 
+	@Column(name="costo_por_unidad")
+	private BigDecimal costoPorUnidad;
+
+	private Timestamp creado;
+
+	@Lob
 	private String descripcion;
+
+	private byte estado;
 
 	@Column(name="nombre_producto")
 	private String nombreProducto;
 
 	@Column(name="precio_unitario")
 	private BigDecimal precioUnitario;
+
+	private String sku;
 
 	//bi-directional many-to-one association to Prediccione
 	@OneToMany(mappedBy="producto")
@@ -38,9 +49,12 @@ public class Producto implements Serializable {
 	@OneToMany(mappedBy="producto")
 	private List<Produccion> produccions;
 
+	//bi-directional many-to-one association to Categoria
+	@ManyToOne
+	private Categoria categoria;
+
 	//bi-directional many-to-one association to Usuario
 	@ManyToOne
-	@JoinColumn(name="id_usuario")
 	private Usuario usuario;
 
 	//bi-directional many-to-one association to Venta
@@ -58,12 +72,28 @@ public class Producto implements Serializable {
 		this.id = id;
 	}
 
-	public String getCategoria() {
-		return this.categoria;
+	public Timestamp getActualizado() {
+		return this.actualizado;
 	}
 
-	public void setCategoria(String categoria) {
-		this.categoria = categoria;
+	public void setActualizado(Timestamp actualizado) {
+		this.actualizado = actualizado;
+	}
+
+	public BigDecimal getCostoPorUnidad() {
+		return this.costoPorUnidad;
+	}
+
+	public void setCostoPorUnidad(BigDecimal costoPorUnidad) {
+		this.costoPorUnidad = costoPorUnidad;
+	}
+
+	public Timestamp getCreado() {
+		return this.creado;
+	}
+
+	public void setCreado(Timestamp creado) {
+		this.creado = creado;
 	}
 
 	public String getDescripcion() {
@@ -72,6 +102,14 @@ public class Producto implements Serializable {
 
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
+	}
+
+	public byte getEstado() {
+		return this.estado;
+	}
+
+	public void setEstado(byte estado) {
+		this.estado = estado;
 	}
 
 	public String getNombreProducto() {
@@ -88,6 +126,14 @@ public class Producto implements Serializable {
 
 	public void setPrecioUnitario(BigDecimal precioUnitario) {
 		this.precioUnitario = precioUnitario;
+	}
+
+	public String getSku() {
+		return this.sku;
+	}
+
+	public void setSku(String sku) {
+		this.sku = sku;
 	}
 
 	public List<Prediccione> getPredicciones() {
@@ -132,6 +178,14 @@ public class Producto implements Serializable {
 		produccion.setProducto(null);
 
 		return produccion;
+	}
+
+	public Categoria getCategoria() {
+		return this.categoria;
+	}
+
+	public void setCategoria(Categoria categoria) {
+		this.categoria = categoria;
 	}
 
 	public Usuario getUsuario() {

@@ -2,6 +2,7 @@ package co.edu.ue.entity;
 
 import java.io.Serializable;
 import jakarta.persistence.*;
+import java.sql.Timestamp;
 import java.util.List;
 
 
@@ -17,98 +18,216 @@ public class Usuario implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="id")
 	private int id;
 
-	@Column(name = "contrasena")
-	private String contrasena;
+	private Timestamp actualizado;
 
-	@Column(name = "correo")
-	private String correo;
+	private String apellidos;
 
-	@Column(name = "nombre")
-	private String nombre;
+	@Column(name="contrasena_hash")
+	private String contrasenaHash;
+
+	private Timestamp creado;
+
+	@Lob
+	private String direccion;
+
+	private String documento;
+
+	private String email;
+
+	private byte estado;
+
+	@Column(name="nombre_empresa")
+	private String nombreEmpresa;
+
+	@Column(name="primer_nombre")
+	private String primerNombre;
+
+	@Column(name="segundo_nombre")
+	private String segundoNombre;
+
+	private String telefono;
+
+	@Column(name="tipo_negocio")
+	private String tipoNegocio;
+
+	//bi-directional many-to-one association to Categoria
+	@OneToMany(mappedBy="usuario")
+	private List<Categoria> categorias;
 
 	//bi-directional many-to-one association to Gasto
 	@OneToMany(mappedBy="usuario")
 	private List<Gasto> gastos;
 
-	//bi-directional many-to-one association to ImpactoSostenible
+	//bi-directional many-to-one association to Informe
 	@OneToMany(mappedBy="usuario")
-	private List<ImpactoSostenible> impactoSostenibles;
+	private List<Informe> informes;
+
+	//bi-directional many-to-one association to MetricasSostenibilidad
+	@OneToMany(mappedBy="usuario")
+	private List<MetricasSostenibilidad> metricasSostenibilidads;
+
+	//bi-directional many-to-one association to Prediccione
+	@OneToMany(mappedBy="usuario")
+	private List<Prediccione> predicciones;
+
+	//bi-directional many-to-one association to Produccion
+	@OneToMany(mappedBy="usuario")
+	private List<Produccion> produccions;
 
 	//bi-directional many-to-one association to Producto
 	@OneToMany(mappedBy="usuario")
 	private List<Producto> productos;
 
-	//bi-directional many-to-one association to ReportesFinanciero
+	//bi-directional many-to-one association to Venta
 	@OneToMany(mappedBy="usuario")
-	private List<ReportesFinanciero> reportesFinancieros;
+	private List<Venta> ventas;
 
 	public Usuario() {
 	}
-	
-	
-	
+
 	public int getId() {
-		return id;
+		return this.id;
 	}
-
-
 
 	public void setId(int id) {
 		this.id = id;
 	}
 
-
-
-	public String getContrasena() {
-		return contrasena;
+	public Timestamp getActualizado() {
+		return this.actualizado;
 	}
 
-
-
-	public void setContrasena(String contrasena) {
-		this.contrasena = contrasena;
+	public void setActualizado(Timestamp actualizado) {
+		this.actualizado = actualizado;
 	}
 
-
-
-	public String getCorreo() {
-		return correo;
+	public String getApellidos() {
+		return this.apellidos;
 	}
 
-
-
-	public void setCorreo(String correo) {
-		this.correo = correo;
+	public void setApellidos(String apellidos) {
+		this.apellidos = apellidos;
 	}
 
-
-
-	public String getNombre() {
-		return nombre;
+	public String getContrasenaHash() {
+		return this.contrasenaHash;
 	}
 
-
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setContrasenaHash(String contrasenaHash) {
+		this.contrasenaHash = contrasenaHash;
 	}
 
+	public Timestamp getCreado() {
+		return this.creado;
+	}
 
+	public void setCreado(Timestamp creado) {
+		this.creado = creado;
+	}
+
+	public String getDireccion() {
+		return this.direccion;
+	}
+
+	public void setDireccion(String direccion) {
+		this.direccion = direccion;
+	}
+
+	public String getDocumento() {
+		return this.documento;
+	}
+
+	public void setDocumento(String documento) {
+		this.documento = documento;
+	}
+
+	public String getEmail() {
+		return this.email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public byte getEstado() {
+		return this.estado;
+	}
+
+	public void setEstado(byte estado) {
+		this.estado = estado;
+	}
+
+	public String getNombreEmpresa() {
+		return this.nombreEmpresa;
+	}
+
+	public void setNombreEmpresa(String nombreEmpresa) {
+		this.nombreEmpresa = nombreEmpresa;
+	}
+
+	public String getPrimerNombre() {
+		return this.primerNombre;
+	}
+
+	public void setPrimerNombre(String primerNombre) {
+		this.primerNombre = primerNombre;
+	}
+
+	public String getSegundoNombre() {
+		return this.segundoNombre;
+	}
+
+	public void setSegundoNombre(String segundoNombre) {
+		this.segundoNombre = segundoNombre;
+	}
+
+	public String getTelefono() {
+		return this.telefono;
+	}
+
+	public void setTelefono(String telefono) {
+		this.telefono = telefono;
+	}
+
+	public String getTipoNegocio() {
+		return this.tipoNegocio;
+	}
+
+	public void setTipoNegocio(String tipoNegocio) {
+		this.tipoNegocio = tipoNegocio;
+	}
+
+	public List<Categoria> getCategorias() {
+		return this.categorias;
+	}
+
+	public void setCategorias(List<Categoria> categorias) {
+		this.categorias = categorias;
+	}
+
+	public Categoria addCategoria(Categoria categoria) {
+		getCategorias().add(categoria);
+		categoria.setUsuario(this);
+
+		return categoria;
+	}
+
+	public Categoria removeCategoria(Categoria categoria) {
+		getCategorias().remove(categoria);
+		categoria.setUsuario(null);
+
+		return categoria;
+	}
 
 	public List<Gasto> getGastos() {
-		return gastos;
+		return this.gastos;
 	}
-
-
 
 	public void setGastos(List<Gasto> gastos) {
 		this.gastos = gastos;
 	}
-
-
 
 	public Gasto addGasto(Gasto gasto) {
 		getGastos().add(gasto);
@@ -124,26 +243,92 @@ public class Usuario implements Serializable {
 		return gasto;
 	}
 
-	public List<ImpactoSostenible> getImpactoSostenibles() {
-		return this.impactoSostenibles;
+	public List<Informe> getInformes() {
+		return this.informes;
 	}
 
-	public void setImpactoSostenibles(List<ImpactoSostenible> impactoSostenibles) {
-		this.impactoSostenibles = impactoSostenibles;
+	public void setInformes(List<Informe> informes) {
+		this.informes = informes;
 	}
 
-	public ImpactoSostenible addImpactoSostenible(ImpactoSostenible impactoSostenible) {
-		getImpactoSostenibles().add(impactoSostenible);
-		impactoSostenible.setUsuario(this);
+	public Informe addInforme(Informe informe) {
+		getInformes().add(informe);
+		informe.setUsuario(this);
 
-		return impactoSostenible;
+		return informe;
 	}
 
-	public ImpactoSostenible removeImpactoSostenible(ImpactoSostenible impactoSostenible) {
-		getImpactoSostenibles().remove(impactoSostenible);
-		impactoSostenible.setUsuario(null);
+	public Informe removeInforme(Informe informe) {
+		getInformes().remove(informe);
+		informe.setUsuario(null);
 
-		return impactoSostenible;
+		return informe;
+	}
+
+	public List<MetricasSostenibilidad> getMetricasSostenibilidads() {
+		return this.metricasSostenibilidads;
+	}
+
+	public void setMetricasSostenibilidads(List<MetricasSostenibilidad> metricasSostenibilidads) {
+		this.metricasSostenibilidads = metricasSostenibilidads;
+	}
+
+	public MetricasSostenibilidad addMetricasSostenibilidad(MetricasSostenibilidad metricasSostenibilidad) {
+		getMetricasSostenibilidads().add(metricasSostenibilidad);
+		metricasSostenibilidad.setUsuario(this);
+
+		return metricasSostenibilidad;
+	}
+
+	public MetricasSostenibilidad removeMetricasSostenibilidad(MetricasSostenibilidad metricasSostenibilidad) {
+		getMetricasSostenibilidads().remove(metricasSostenibilidad);
+		metricasSostenibilidad.setUsuario(null);
+
+		return metricasSostenibilidad;
+	}
+
+	public List<Prediccione> getPredicciones() {
+		return this.predicciones;
+	}
+
+	public void setPredicciones(List<Prediccione> predicciones) {
+		this.predicciones = predicciones;
+	}
+
+	public Prediccione addPrediccione(Prediccione prediccione) {
+		getPredicciones().add(prediccione);
+		prediccione.setUsuario(this);
+
+		return prediccione;
+	}
+
+	public Prediccione removePrediccione(Prediccione prediccione) {
+		getPredicciones().remove(prediccione);
+		prediccione.setUsuario(null);
+
+		return prediccione;
+	}
+
+	public List<Produccion> getProduccions() {
+		return this.produccions;
+	}
+
+	public void setProduccions(List<Produccion> produccions) {
+		this.produccions = produccions;
+	}
+
+	public Produccion addProduccion(Produccion produccion) {
+		getProduccions().add(produccion);
+		produccion.setUsuario(this);
+
+		return produccion;
+	}
+
+	public Produccion removeProduccion(Produccion produccion) {
+		getProduccions().remove(produccion);
+		produccion.setUsuario(null);
+
+		return produccion;
 	}
 
 	public List<Producto> getProductos() {
@@ -168,26 +353,26 @@ public class Usuario implements Serializable {
 		return producto;
 	}
 
-	public List<ReportesFinanciero> getReportesFinancieros() {
-		return this.reportesFinancieros;
+	public List<Venta> getVentas() {
+		return this.ventas;
 	}
 
-	public void setReportesFinancieros(List<ReportesFinanciero> reportesFinancieros) {
-		this.reportesFinancieros = reportesFinancieros;
+	public void setVentas(List<Venta> ventas) {
+		this.ventas = ventas;
 	}
 
-	public ReportesFinanciero addReportesFinanciero(ReportesFinanciero reportesFinanciero) {
-		getReportesFinancieros().add(reportesFinanciero);
-		reportesFinanciero.setUsuario(this);
+	public Venta addVenta(Venta venta) {
+		getVentas().add(venta);
+		venta.setUsuario(this);
 
-		return reportesFinanciero;
+		return venta;
 	}
 
-	public ReportesFinanciero removeReportesFinanciero(ReportesFinanciero reportesFinanciero) {
-		getReportesFinancieros().remove(reportesFinanciero);
-		reportesFinanciero.setUsuario(null);
+	public Venta removeVenta(Venta venta) {
+		getVentas().remove(venta);
+		venta.setUsuario(null);
 
-		return reportesFinanciero;
+		return venta;
 	}
 
 }

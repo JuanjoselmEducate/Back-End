@@ -4,6 +4,7 @@ import java.io.Serializable;
 import jakarta.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.sql.Timestamp;
 
 
 /**
@@ -20,19 +21,28 @@ public class Gasto implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 
-	private String categoria;
+	private Timestamp creado;
 
-	@Lob
 	private String descripcion;
 
 	@Temporal(TemporalType.DATE)
-	private Date fecha;
+	@Column(name="fecha_gasto")
+	private Date fechaGasto;
 
 	private BigDecimal monto;
 
+	@Lob
+	private String notas;
+
+	@Column(name="tipo_gasto")
+	private String tipoGasto;
+
+	//bi-directional many-to-one association to Categoria
+	@ManyToOne
+	private Categoria categoria;
+
 	//bi-directional many-to-one association to Usuario
 	@ManyToOne
-	@JoinColumn(name="id_usuario")
 	private Usuario usuario;
 
 	public Gasto() {
@@ -46,12 +56,12 @@ public class Gasto implements Serializable {
 		this.id = id;
 	}
 
-	public String getCategoria() {
-		return this.categoria;
+	public Timestamp getCreado() {
+		return this.creado;
 	}
 
-	public void setCategoria(String categoria) {
-		this.categoria = categoria;
+	public void setCreado(Timestamp creado) {
+		this.creado = creado;
 	}
 
 	public String getDescripcion() {
@@ -62,12 +72,12 @@ public class Gasto implements Serializable {
 		this.descripcion = descripcion;
 	}
 
-	public Date getFecha() {
-		return this.fecha;
+	public Date getFechaGasto() {
+		return this.fechaGasto;
 	}
 
-	public void setFecha(Date fecha) {
-		this.fecha = fecha;
+	public void setFechaGasto(Date fechaGasto) {
+		this.fechaGasto = fechaGasto;
 	}
 
 	public BigDecimal getMonto() {
@@ -76,6 +86,30 @@ public class Gasto implements Serializable {
 
 	public void setMonto(BigDecimal monto) {
 		this.monto = monto;
+	}
+
+	public String getNotas() {
+		return this.notas;
+	}
+
+	public void setNotas(String notas) {
+		this.notas = notas;
+	}
+
+	public String getTipoGasto() {
+		return this.tipoGasto;
+	}
+
+	public void setTipoGasto(String tipoGasto) {
+		this.tipoGasto = tipoGasto;
+	}
+
+	public Categoria getCategoria() {
+		return this.categoria;
+	}
+
+	public void setCategoria(Categoria categoria) {
+		this.categoria = categoria;
 	}
 
 	public Usuario getUsuario() {
