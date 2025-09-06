@@ -20,14 +20,18 @@ public class Categoria implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 
-	private Timestamp creado;
+	@Column(name="nombre")
+	private String nombre;
 
+	@Column(name="descripcion")
 	@Lob
 	private String descripcion;
 
-	private String nombre;
-
+	@Column(name="tipo")
 	private String tipo;
+
+	@Column(name="creado")
+	private Timestamp creado;
 
 	//bi-directional many-to-one association to Usuario
 	@ManyToOne
@@ -45,43 +49,43 @@ public class Categoria implements Serializable {
 	}
 
 	public int getId() {
-		return this.id;
+		return id;
 	}
 
 	public void setId(int id) {
 		this.id = id;
 	}
 
-	public Timestamp getCreado() {
-		return this.creado;
-	}
-
-	public void setCreado(Timestamp creado) {
-		this.creado = creado;
-	}
-
-	public String getDescripcion() {
-		return this.descripcion;
-	}
-
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
-	}
-
 	public String getNombre() {
-		return this.nombre;
+		return nombre;
 	}
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
 
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+
 	public String getTipo() {
-		return this.tipo;
+		return tipo;
 	}
 
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
+	}
+
+	public Timestamp getCreado() {
+		return creado;
+	}
+
+	public void setCreado(Timestamp creado) {
+		this.creado = creado;
 	}
 
 	public Usuario getUsuario() {

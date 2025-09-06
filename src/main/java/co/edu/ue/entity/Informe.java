@@ -20,21 +20,22 @@ public class Informe implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 
-	private Timestamp creado;
-
-	@Column(name="datos_json")
-	private Object datosJson;
-
-	@Temporal(TemporalType.DATE)
-	@Column(name="fin_periodo")
-	private Date finPeriodo;
+	@Column(name="tipo_informe")
+	private String tipoInforme;
 
 	@Temporal(TemporalType.DATE)
 	@Column(name="inicio_periodo")
 	private Date inicioPeriodo;
 
-	@Column(name="tipo_informe")
-	private String tipoInforme;
+	@Temporal(TemporalType.DATE)
+	@Column(name="fin_periodo")
+	private Date finPeriodo;
+
+	@Column(name="datos_json")
+	private String datosJson;
+
+	@Column(name="crceado")
+	private Timestamp creado;
 
 	//bi-directional many-to-one association to Usuario
 	@ManyToOne
@@ -44,59 +45,58 @@ public class Informe implements Serializable {
 	}
 
 	public int getId() {
-		return this.id;
+		return id;
 	}
 
 	public void setId(int id) {
 		this.id = id;
 	}
 
-	public Timestamp getCreado() {
-		return this.creado;
-	}
-
-	public void setCreado(Timestamp creado) {
-		this.creado = creado;
-	}
-
-	public Object getDatosJson() {
-		return this.datosJson;
-	}
-
-	public void setDatosJson(Object datosJson) {
-		this.datosJson = datosJson;
-	}
-
-	public Date getFinPeriodo() {
-		return this.finPeriodo;
-	}
-
-	public void setFinPeriodo(Date finPeriodo) {
-		this.finPeriodo = finPeriodo;
-	}
-
-	public Date getInicioPeriodo() {
-		return this.inicioPeriodo;
-	}
-
-	public void setInicioPeriodo(Date inicioPeriodo) {
-		this.inicioPeriodo = inicioPeriodo;
-	}
-
 	public String getTipoInforme() {
-		return this.tipoInforme;
+		return tipoInforme;
 	}
 
 	public void setTipoInforme(String tipoInforme) {
 		this.tipoInforme = tipoInforme;
 	}
 
+	public Date getInicioPeriodo() {
+		return inicioPeriodo;
+	}
+
+	public void setInicioPeriodo(Date inicioPeriodo) {
+		this.inicioPeriodo = inicioPeriodo;
+	}
+
+	public Date getFinPeriodo() {
+		return finPeriodo;
+	}
+
+	public void setFinPeriodo(Date finPeriodo) {
+		this.finPeriodo = finPeriodo;
+	}
+
+	public Object getDatosJson() {
+		return datosJson;
+	}
+
+	public void setDatosJson(String datosJson) {
+		this.datosJson = datosJson;
+	}
+
+	public Timestamp getCreado() {
+		return creado;
+	}
+
+	public void setCreado(Timestamp creado) {
+		this.creado = creado;
+	}
+
 	public Usuario getUsuario() {
-		return this.usuario;
+		return usuario;
 	}
 
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
-
 }

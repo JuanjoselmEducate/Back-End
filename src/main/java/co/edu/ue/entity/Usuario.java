@@ -19,38 +19,46 @@ public class Usuario implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
-
-	private Timestamp actualizado;
-
-	private String apellidos;
-
+	
+	@Column(name="email")
+	private String email;	
+	
 	@Column(name="contrasena_hash")
 	private String contrasenaHash;
-
-	private Timestamp creado;
-
-	@Lob
-	private String direccion;
-
-	private String documento;
-
-	private String email;
-
-	private byte estado;
-
-	@Column(name="nombre_empresa")
-	private String nombreEmpresa;
-
+	
 	@Column(name="primer_nombre")
 	private String primerNombre;
-
+	
 	@Column(name="segundo_nombre")
 	private String segundoNombre;
-
-	private String telefono;
-
+		
+	@Column(name="apellidos")
+	private String apellidos;
+	
+	@Column(name="documento")
+	private String documento;
+	
+	@Column(name="nombre_empresa")
+	private String nombreEmpresa;
+	
 	@Column(name="tipo_negocio")
 	private String tipoNegocio;
+	
+	@Column(name="telefono")
+	private String telefono;
+	
+	@Column(name="direccion")
+	@Lob
+	private String direccion;
+	
+	@Column(name="estado")
+	private byte estado;
+	
+	@Column(name="creado")
+	private Timestamp creado;
+	
+	@Column(name="actualizado")
+	private Timestamp actualizado;
 
 	//bi-directional many-to-one association to Categoria
 	@OneToMany(mappedBy="usuario")
@@ -88,87 +96,31 @@ public class Usuario implements Serializable {
 	}
 
 	public int getId() {
-		return this.id;
+		return id;
 	}
 
 	public void setId(int id) {
 		this.id = id;
 	}
 
-	public Timestamp getActualizado() {
-		return this.actualizado;
-	}
-
-	public void setActualizado(Timestamp actualizado) {
-		this.actualizado = actualizado;
-	}
-
-	public String getApellidos() {
-		return this.apellidos;
-	}
-
-	public void setApellidos(String apellidos) {
-		this.apellidos = apellidos;
-	}
-
-	public String getContrasenaHash() {
-		return this.contrasenaHash;
-	}
-
-	public void setContrasenaHash(String contrasenaHash) {
-		this.contrasenaHash = contrasenaHash;
-	}
-
-	public Timestamp getCreado() {
-		return this.creado;
-	}
-
-	public void setCreado(Timestamp creado) {
-		this.creado = creado;
-	}
-
-	public String getDireccion() {
-		return this.direccion;
-	}
-
-	public void setDireccion(String direccion) {
-		this.direccion = direccion;
-	}
-
-	public String getDocumento() {
-		return this.documento;
-	}
-
-	public void setDocumento(String documento) {
-		this.documento = documento;
-	}
-
 	public String getEmail() {
-		return this.email;
+		return email;
 	}
 
 	public void setEmail(String email) {
 		this.email = email;
 	}
 
-	public byte getEstado() {
-		return this.estado;
+	public String getContrasenaHash() {
+		return contrasenaHash;
 	}
 
-	public void setEstado(byte estado) {
-		this.estado = estado;
-	}
-
-	public String getNombreEmpresa() {
-		return this.nombreEmpresa;
-	}
-
-	public void setNombreEmpresa(String nombreEmpresa) {
-		this.nombreEmpresa = nombreEmpresa;
+	public void setContrasenaHash(String contrasenaHash) {
+		this.contrasenaHash = contrasenaHash;
 	}
 
 	public String getPrimerNombre() {
-		return this.primerNombre;
+		return primerNombre;
 	}
 
 	public void setPrimerNombre(String primerNombre) {
@@ -176,23 +128,79 @@ public class Usuario implements Serializable {
 	}
 
 	public String getSegundoNombre() {
-		return this.segundoNombre;
+		return segundoNombre;
 	}
 
 	public void setSegundoNombre(String segundoNombre) {
 		this.segundoNombre = segundoNombre;
 	}
 
+	public String getApellidos() {
+		return apellidos;
+	}
+
+	public void setApellidos(String apellidos) {
+		this.apellidos = apellidos;
+	}
+
+	public String getDocumento() {
+		return documento;
+	}
+
+	public void setDocumento(String documento) {
+		this.documento = documento;
+	}
+
+	public String getNombreEmpresa() {
+		return nombreEmpresa;
+	}
+
+	public void setNombreEmpresa(String nombreEmpresa) {
+		this.nombreEmpresa = nombreEmpresa;
+	}
+
 	public String getTelefono() {
-		return this.telefono;
+		return telefono;
 	}
 
 	public void setTelefono(String telefono) {
 		this.telefono = telefono;
 	}
 
+	public String getDireccion() {
+		return direccion;
+	}
+
+	public void setDireccion(String direccion) {
+		this.direccion = direccion;
+	}
+
+	public byte getEstado() {
+		return estado;
+	}
+
+	public void setEstado(byte estado) {
+		this.estado = estado;
+	}
+
+	public Timestamp getCreado() {
+		return creado;
+	}
+
+	public void setCreado(Timestamp creado) {
+		this.creado = creado;
+	}
+
+	public Timestamp getActualizado() {
+		return actualizado;
+	}
+
+	public void setActualizado(Timestamp actualizado) {
+		this.actualizado = actualizado;
+	}
+
 	public String getTipoNegocio() {
-		return this.tipoNegocio;
+		return tipoNegocio;
 	}
 
 	public void setTipoNegocio(String tipoNegocio) {

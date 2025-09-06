@@ -20,29 +20,31 @@ public class Produccion implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 
-	@Column(name="cantidad_desperdicio")
-	private int cantidadDesperdicio;
-
 	@Column(name="cantidad_producida")
 	private int cantidadProducida;
-
-	@Column(name="costo_desperdicio")
-	private BigDecimal costoDesperdicio;
-
-	@Column(name="costo_produccion")
-	private BigDecimal costoProduccion;
-
-	private Timestamp creado;
 
 	@Temporal(TemporalType.DATE)
 	@Column(name="fecha_produccion")
 	private Date fechaProduccion;
 
-	@Lob
-	private String notas;
+	@Column(name="costo_produccion")
+	private BigDecimal costoProduccion;
+
+	@Column(name="cantidad_desperdicio")
+	private int cantidadDesperdicio;
+
+	@Column(name="costo_desperdicio")
+	private BigDecimal costoDesperdicio;
 
 	@Column(name="porcentaje_eficiencia")
 	private BigDecimal porcentajeEficiencia;
+
+	@Column(name="notas")
+	@Lob
+	private String notas;
+
+	@Column(name="creado")
+	private Timestamp creado;
 
 	//bi-directional many-to-one association to Producto
 	@ManyToOne
@@ -56,27 +58,27 @@ public class Produccion implements Serializable {
 	}
 
 	public int getId() {
-		return this.id;
+		return id;
 	}
 
 	public void setId(int id) {
 		this.id = id;
 	}
 
-	public int getCantidadDesperdicio() {
-		return this.cantidadDesperdicio;
-	}
-
-	public void setCantidadDesperdicio(int cantidadDesperdicio) {
-		this.cantidadDesperdicio = cantidadDesperdicio;
-	}
-
 	public int getCantidadProducida() {
-		return this.cantidadProducida;
+		return cantidadProducida;
 	}
 
 	public void setCantidadProducida(int cantidadProducida) {
 		this.cantidadProducida = cantidadProducida;
+	}
+
+	public int getCantidadDesperdicio() {
+		return cantidadDesperdicio;
+	}
+
+	public void setCantidadDesperdicio(int cantidadDesperdicio) {
+		this.cantidadDesperdicio = cantidadDesperdicio;
 	}
 
 	public BigDecimal getCostoDesperdicio() {

@@ -21,21 +21,25 @@ public class Gasto implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 
-	private Timestamp creado;
-
+	@Column(name="desccripcion")
 	private String descripcion;
+
+	@Column(name="monto")
+	private BigDecimal monto;
 
 	@Temporal(TemporalType.DATE)
 	@Column(name="fecha_gasto")
 	private Date fechaGasto;
 
-	private BigDecimal monto;
-
+	@Column(name="tipo_gasto")
+	private String tipoGasto;
+	
+	@Column(name="notas")
 	@Lob
 	private String notas;
 
-	@Column(name="tipo_gasto")
-	private String tipoGasto;
+	@Column(name="creado")
+	private Timestamp creado;
 
 	//bi-directional many-to-one association to Categoria
 	@ManyToOne
@@ -49,63 +53,63 @@ public class Gasto implements Serializable {
 	}
 
 	public int getId() {
-		return this.id;
+		return id;
 	}
 
 	public void setId(int id) {
 		this.id = id;
 	}
 
-	public Timestamp getCreado() {
-		return this.creado;
-	}
-
-	public void setCreado(Timestamp creado) {
-		this.creado = creado;
-	}
-
 	public String getDescripcion() {
-		return this.descripcion;
+		return descripcion;
 	}
 
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
 
-	public Date getFechaGasto() {
-		return this.fechaGasto;
-	}
-
-	public void setFechaGasto(Date fechaGasto) {
-		this.fechaGasto = fechaGasto;
-	}
-
 	public BigDecimal getMonto() {
-		return this.monto;
+		return monto;
 	}
 
 	public void setMonto(BigDecimal monto) {
 		this.monto = monto;
 	}
 
-	public String getNotas() {
-		return this.notas;
+	public Date getFechaGasto() {
+		return fechaGasto;
 	}
 
-	public void setNotas(String notas) {
-		this.notas = notas;
+	public void setFechaGasto(Date fechaGasto) {
+		this.fechaGasto = fechaGasto;
 	}
 
 	public String getTipoGasto() {
-		return this.tipoGasto;
+		return tipoGasto;
 	}
 
 	public void setTipoGasto(String tipoGasto) {
 		this.tipoGasto = tipoGasto;
 	}
 
+	public String getNotas() {
+		return notas;
+	}
+
+	public void setNotas(String notas) {
+		this.notas = notas;
+	}
+
+	public Timestamp getCreado() {
+		return creado;
+	}
+
+	public void setCreado(Timestamp creado) {
+		this.creado = creado;
+	}
+
 	public Categoria getCategoria() {
-		return this.categoria;
+		return categoria;
 	}
 
 	public void setCategoria(Categoria categoria) {
@@ -113,7 +117,7 @@ public class Gasto implements Serializable {
 	}
 
 	public Usuario getUsuario() {
-		return this.usuario;
+		return usuario;
 	}
 
 	public void setUsuario(Usuario usuario) {

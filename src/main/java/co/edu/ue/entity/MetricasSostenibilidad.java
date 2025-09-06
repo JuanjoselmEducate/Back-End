@@ -21,24 +21,27 @@ public class MetricasSostenibilidad implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 
-	private Timestamp creado;
+	@Column(name="tipo_metrica")
+	private String tipoMetrica;
+
+	@Column(name="valor")
+	private BigDecimal valor;
+
+	@Column(name="unidad")
+	private String unidad;
 
 	@Temporal(TemporalType.DATE)
 	@Column(name="fecha_medicion")
 	private Date fechaMedicion;
 
+	@Column(name="valor_objetivo")
+	private BigDecimal valorObjetivo;
+
 	@Column(name="porcentaje_mejora")
 	private BigDecimal porcentajeMejora;
 
-	@Column(name="tipo_metrica")
-	private String tipoMetrica;
-
-	private String unidad;
-
-	private BigDecimal valor;
-
-	@Column(name="valor_objetivo")
-	private BigDecimal valorObjetivo;
+	@Column(name="creado")
+	private Timestamp creado;
 
 	//bi-directional many-to-one association to Usuario
 	@ManyToOne
@@ -48,75 +51,76 @@ public class MetricasSostenibilidad implements Serializable {
 	}
 
 	public int getId() {
-		return this.id;
+		return id;
 	}
 
 	public void setId(int id) {
 		this.id = id;
 	}
 
-	public Timestamp getCreado() {
-		return this.creado;
-	}
-
-	public void setCreado(Timestamp creado) {
-		this.creado = creado;
-	}
-
-	public Date getFechaMedicion() {
-		return this.fechaMedicion;
-	}
-
-	public void setFechaMedicion(Date fechaMedicion) {
-		this.fechaMedicion = fechaMedicion;
-	}
-
-	public BigDecimal getPorcentajeMejora() {
-		return this.porcentajeMejora;
-	}
-
-	public void setPorcentajeMejora(BigDecimal porcentajeMejora) {
-		this.porcentajeMejora = porcentajeMejora;
-	}
-
 	public String getTipoMetrica() {
-		return this.tipoMetrica;
+		return tipoMetrica;
 	}
 
 	public void setTipoMetrica(String tipoMetrica) {
 		this.tipoMetrica = tipoMetrica;
 	}
 
-	public String getUnidad() {
-		return this.unidad;
-	}
-
-	public void setUnidad(String unidad) {
-		this.unidad = unidad;
-	}
-
 	public BigDecimal getValor() {
-		return this.valor;
+		return valor;
 	}
 
 	public void setValor(BigDecimal valor) {
 		this.valor = valor;
 	}
 
+	public String getUnidad() {
+		return unidad;
+	}
+
+	public void setUnidad(String unidad) {
+		this.unidad = unidad;
+	}
+
+	public Date getFechaMedicion() {
+		return fechaMedicion;
+	}
+
+	public void setFechaMedicion(Date fechaMedicion) {
+		this.fechaMedicion = fechaMedicion;
+	}
+
 	public BigDecimal getValorObjetivo() {
-		return this.valorObjetivo;
+		return valorObjetivo;
 	}
 
 	public void setValorObjetivo(BigDecimal valorObjetivo) {
 		this.valorObjetivo = valorObjetivo;
 	}
 
+	public BigDecimal getPorcentajeMejora() {
+		return porcentajeMejora;
+	}
+
+	public void setPorcentajeMejora(BigDecimal porcentajeMejora) {
+		this.porcentajeMejora = porcentajeMejora;
+	}
+
+	public Timestamp getCreado() {
+		return creado;
+	}
+
+	public void setCreado(Timestamp creado) {
+		this.creado = creado;
+	}
+
 	public Usuario getUsuario() {
-		return this.usuario;
+		return usuario;
 	}
 
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
-
+	
+	
 }

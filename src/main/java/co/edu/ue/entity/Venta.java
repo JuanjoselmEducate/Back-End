@@ -21,26 +21,29 @@ public class Venta implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 
+	@Column(name="cantidad")
 	private int cantidad;
 
-	private Timestamp creado;
+	@Column(name="precio_unitario")
+	private BigDecimal precioUnitario;
+
+	@Column(name="monto_total")
+	private BigDecimal montoTotal;
 
 	@Temporal(TemporalType.DATE)
 	@Column(name="fecha_venta")
 	private Date fechaVenta;
 
-	@Column(name="monto_total")
-	private BigDecimal montoTotal;
-
 	@Column(name="nombre_cliente")
 	private String nombreCliente;
 
+	@Column(name="notas")
 	@Lob
 	private String notas;
 
-	@Column(name="precio_unitario")
-	private BigDecimal precioUnitario;
-
+	@Column(name="creado")
+	private Timestamp creado;
+	
 	//bi-directional many-to-one association to Producto
 	@ManyToOne
 	private Producto producto;
@@ -53,7 +56,7 @@ public class Venta implements Serializable {
 	}
 
 	public int getId() {
-		return this.id;
+		return id;
 	}
 
 	public void setId(int id) {
@@ -61,39 +64,39 @@ public class Venta implements Serializable {
 	}
 
 	public int getCantidad() {
-		return this.cantidad;
+		return cantidad;
 	}
 
 	public void setCantidad(int cantidad) {
 		this.cantidad = cantidad;
 	}
 
-	public Timestamp getCreado() {
-		return this.creado;
+	public BigDecimal getPrecioUnitario() {
+		return precioUnitario;
 	}
 
-	public void setCreado(Timestamp creado) {
-		this.creado = creado;
-	}
-
-	public Date getFechaVenta() {
-		return this.fechaVenta;
-	}
-
-	public void setFechaVenta(Date fechaVenta) {
-		this.fechaVenta = fechaVenta;
+	public void setPrecioUnitario(BigDecimal precioUnitario) {
+		this.precioUnitario = precioUnitario;
 	}
 
 	public BigDecimal getMontoTotal() {
-		return this.montoTotal;
+		return montoTotal;
 	}
 
 	public void setMontoTotal(BigDecimal montoTotal) {
 		this.montoTotal = montoTotal;
 	}
 
+	public Date getFechaVenta() {
+		return fechaVenta;
+	}
+
+	public void setFechaVenta(Date fechaVenta) {
+		this.fechaVenta = fechaVenta;
+	}
+
 	public String getNombreCliente() {
-		return this.nombreCliente;
+		return nombreCliente;
 	}
 
 	public void setNombreCliente(String nombreCliente) {
@@ -101,23 +104,23 @@ public class Venta implements Serializable {
 	}
 
 	public String getNotas() {
-		return this.notas;
+		return notas;
 	}
 
 	public void setNotas(String notas) {
 		this.notas = notas;
 	}
 
-	public BigDecimal getPrecioUnitario() {
-		return this.precioUnitario;
+	public Timestamp getCreado() {
+		return creado;
 	}
 
-	public void setPrecioUnitario(BigDecimal precioUnitario) {
-		this.precioUnitario = precioUnitario;
+	public void setCreado(Timestamp creado) {
+		this.creado = creado;
 	}
 
 	public Producto getProducto() {
-		return this.producto;
+		return producto;
 	}
 
 	public void setProducto(Producto producto) {
@@ -125,11 +128,12 @@ public class Venta implements Serializable {
 	}
 
 	public Usuario getUsuario() {
-		return this.usuario;
+		return usuario;
 	}
 
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
 
+	
 }

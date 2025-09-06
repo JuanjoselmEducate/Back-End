@@ -21,28 +21,30 @@ public class Prediccione implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 
-	@Column(name="algoritmo_usado")
-	private String algoritmoUsado;
-
-	private Timestamp creado;
-
-	@Temporal(TemporalType.DATE)
-	@Column(name="fecha_prediccion")
-	private Date fechaPrediccion;
-
-	@Column(name="nivel_confianza")
-	private BigDecimal nivelConfianza;
-
-	@Column(name="periodo_objetivo")
-	private String periodoObjetivo;
-
-	private BigDecimal tendencia;
-
 	@Column(name="tipo_prediccion")
 	private String tipoPrediccion;
 
 	@Column(name="valor_predicho")
 	private BigDecimal valorPredicho;
+
+	@Column(name="nivel_confianza")
+	private BigDecimal nivelConfianza;
+
+	@Temporal(TemporalType.DATE)
+	@Column(name="fecha_prediccion")
+	private Date fechaPrediccion;
+
+	@Column(name="periodo_objetivo")
+	private String periodoObjetivo;
+
+	@Column(name="algoritmo_usado")
+	private String algoritmoUsado;
+
+	@Column(name="tendenccia")
+	private BigDecimal tendencia;
+
+	@Column(name="creado")
+	private Timestamp creado;
 
 	//bi-directional many-to-one association to Producto
 	@ManyToOne
@@ -56,63 +58,15 @@ public class Prediccione implements Serializable {
 	}
 
 	public int getId() {
-		return this.id;
+		return id;
 	}
 
 	public void setId(int id) {
 		this.id = id;
 	}
 
-	public String getAlgoritmoUsado() {
-		return this.algoritmoUsado;
-	}
-
-	public void setAlgoritmoUsado(String algoritmoUsado) {
-		this.algoritmoUsado = algoritmoUsado;
-	}
-
-	public Timestamp getCreado() {
-		return this.creado;
-	}
-
-	public void setCreado(Timestamp creado) {
-		this.creado = creado;
-	}
-
-	public Date getFechaPrediccion() {
-		return this.fechaPrediccion;
-	}
-
-	public void setFechaPrediccion(Date fechaPrediccion) {
-		this.fechaPrediccion = fechaPrediccion;
-	}
-
-	public BigDecimal getNivelConfianza() {
-		return this.nivelConfianza;
-	}
-
-	public void setNivelConfianza(BigDecimal nivelConfianza) {
-		this.nivelConfianza = nivelConfianza;
-	}
-
-	public String getPeriodoObjetivo() {
-		return this.periodoObjetivo;
-	}
-
-	public void setPeriodoObjetivo(String periodoObjetivo) {
-		this.periodoObjetivo = periodoObjetivo;
-	}
-
-	public BigDecimal getTendencia() {
-		return this.tendencia;
-	}
-
-	public void setTendencia(BigDecimal tendencia) {
-		this.tendencia = tendencia;
-	}
-
 	public String getTipoPrediccion() {
-		return this.tipoPrediccion;
+		return tipoPrediccion;
 	}
 
 	public void setTipoPrediccion(String tipoPrediccion) {
@@ -120,15 +74,63 @@ public class Prediccione implements Serializable {
 	}
 
 	public BigDecimal getValorPredicho() {
-		return this.valorPredicho;
+		return valorPredicho;
 	}
 
 	public void setValorPredicho(BigDecimal valorPredicho) {
 		this.valorPredicho = valorPredicho;
 	}
 
+	public BigDecimal getNivelConfianza() {
+		return nivelConfianza;
+	}
+
+	public void setNivelConfianza(BigDecimal nivelConfianza) {
+		this.nivelConfianza = nivelConfianza;
+	}
+
+	public Date getFechaPrediccion() {
+		return fechaPrediccion;
+	}
+
+	public void setFechaPrediccion(Date fechaPrediccion) {
+		this.fechaPrediccion = fechaPrediccion;
+	}
+
+	public String getPeriodoObjetivo() {
+		return periodoObjetivo;
+	}
+
+	public void setPeriodoObjetivo(String periodoObjetivo) {
+		this.periodoObjetivo = periodoObjetivo;
+	}
+
+	public String getAlgoritmoUsado() {
+		return algoritmoUsado;
+	}
+
+	public void setAlgoritmoUsado(String algoritmoUsado) {
+		this.algoritmoUsado = algoritmoUsado;
+	}
+
+	public BigDecimal getTendencia() {
+		return tendencia;
+	}
+
+	public void setTendencia(BigDecimal tendencia) {
+		this.tendencia = tendencia;
+	}
+
+	public Timestamp getCreado() {
+		return creado;
+	}
+
+	public void setCreado(Timestamp creado) {
+		this.creado = creado;
+	}
+
 	public Producto getProducto() {
-		return this.producto;
+		return producto;
 	}
 
 	public void setProducto(Producto producto) {
@@ -136,11 +138,12 @@ public class Prediccione implements Serializable {
 	}
 
 	public Usuario getUsuario() {
-		return this.usuario;
+		return usuario;
 	}
 
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
-
+	
+	
 }

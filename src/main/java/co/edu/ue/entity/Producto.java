@@ -21,25 +21,30 @@ public class Producto implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 
-	private Timestamp actualizado;
-
-	@Column(name="costo_por_unidad")
-	private BigDecimal costoPorUnidad;
-
-	private Timestamp creado;
-
-	@Lob
-	private String descripcion;
-
-	private byte estado;
-
 	@Column(name="nombre_producto")
 	private String nombreProducto;
+
+	@Column(name="descripcion")
+	@Lob
+	private String descripcion;
 
 	@Column(name="precio_unitario")
 	private BigDecimal precioUnitario;
 
+	@Column(name="costo_por_unidad")
+	private BigDecimal costoPorUnidad;
+
+	@Column(name="sku")
 	private String sku;
+
+	@Column(name="estado")
+	private byte estado;
+
+	@Column(name="creado")
+	private Timestamp creado;
+
+	@Column(name="actualizado")
+	private Timestamp actualizado;
 
 	//bi-directional many-to-one association to Prediccione
 	@OneToMany(mappedBy="producto")
@@ -63,61 +68,61 @@ public class Producto implements Serializable {
 
 	public Producto() {
 	}
-
+	
 	public int getId() {
-		return this.id;
+		return id;
 	}
 
 	public void setId(int id) {
 		this.id = id;
 	}
 
-	public Timestamp getActualizado() {
-		return this.actualizado;
+	public String getNombreProducto() {
+		return nombreProducto;
 	}
 
-	public void setActualizado(Timestamp actualizado) {
-		this.actualizado = actualizado;
-	}
-
-	public BigDecimal getCostoPorUnidad() {
-		return this.costoPorUnidad;
-	}
-
-	public void setCostoPorUnidad(BigDecimal costoPorUnidad) {
-		this.costoPorUnidad = costoPorUnidad;
-	}
-
-	public Timestamp getCreado() {
-		return this.creado;
-	}
-
-	public void setCreado(Timestamp creado) {
-		this.creado = creado;
+	public void setNombreProducto(String nombreProducto) {
+		this.nombreProducto = nombreProducto;
 	}
 
 	public String getDescripcion() {
-		return this.descripcion;
+		return descripcion;
 	}
 
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
 
+	public BigDecimal getCostoPorUnidad() {
+		return costoPorUnidad;
+	}
+
+	public void setCostoPorUnidad(BigDecimal costoPorUnidad) {
+		this.costoPorUnidad = costoPorUnidad;
+	}
+
 	public byte getEstado() {
-		return this.estado;
+		return estado;
 	}
 
 	public void setEstado(byte estado) {
 		this.estado = estado;
 	}
 
-	public String getNombreProducto() {
-		return this.nombreProducto;
+	public Timestamp getCreado() {
+		return creado;
 	}
 
-	public void setNombreProducto(String nombreProducto) {
-		this.nombreProducto = nombreProducto;
+	public void setCreado(Timestamp creado) {
+		this.creado = creado;
+	}
+
+	public Timestamp getActualizado() {
+		return actualizado;
+	}
+
+	public void setActualizado(Timestamp actualizado) {
+		this.actualizado = actualizado;
 	}
 
 	public BigDecimal getPrecioUnitario() {
