@@ -1,5 +1,7 @@
 package co.edu.ue.repository;
 
-public interface CategoriaRepositoryI {
+import co.edu.ue.entity.Categoria;
 
+public interface CategoriaRepositoryI {
+    Categoria readCategoria(int id);
 }
