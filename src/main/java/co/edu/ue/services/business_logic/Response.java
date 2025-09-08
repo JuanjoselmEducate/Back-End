@@ -24,5 +24,4 @@ public class Response {
 		return this;		
 	}
 	
-	
 }

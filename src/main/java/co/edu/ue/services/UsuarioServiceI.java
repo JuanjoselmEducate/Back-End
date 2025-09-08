@@ -16,6 +16,8 @@ public interface UsuarioServiceI {
 	boolean activateUsuario(Usuario usuario);
 	boolean reportEstado (Usuario usuario);
 	Response checkEstado (Integer id);
+	Response checkEmail (String email);
+	Response checkDocumento (Integer documento);
 	
 	Response loginUsuario (LoginUsuario usuario);
 	

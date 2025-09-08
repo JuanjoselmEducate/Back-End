@@ -5,6 +5,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import java.util.regex.Pattern;
+
 
 import co.edu.ue.entity.Usuario;
 import co.edu.ue.repository.UsuarioRepositoryI;
@@ -201,5 +203,43 @@ public class UsuarioService implements UsuarioServiceI {
 		}
 		response.setStatus(status);		
 		return response;
+	}
+
+	@Override
+	public Response checkEmail(String email) {
+		Response response = new Response();
+		String menssage = "";
+		Integer status = 400;
+	    String regexPattern = "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}$";
+	    if (!Pattern.compile(regexPattern).matcher(email).matches()) {
+	        menssage = "El formato del email no es válido.";
+	        response.buildResponse(menssage, status);
+	        return response;
+	    }
+		if(rep.findbyEmail(email) == null){
+			menssage = "El email esta disponible.";
+			status = 200;
+		}else {
+			menssage = "El email no esta disponible.";
+		}
+		return response.buildResponse(menssage, status);
+	}
+
+	@Override
+	public Response checkDocumento(Integer documento) {
+		Response response = new Response();
+		String menssage = "";
+		Integer status = 400;
+		if(documento<100000 || documento == null){
+			menssage = "El documento no es valido!";
+			return response.buildResponse(menssage, status);
+		}
+		if(rep.findbyDocumento(Integer.toString(documento)) == null){
+			menssage = "El documento es posible de usar.";
+			status = 200;
+		}else{
+			menssage = "El documento no es valido!";
+		}
+		return response.buildResponse(menssage, status);
 	}
 }

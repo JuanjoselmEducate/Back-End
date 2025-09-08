@@ -38,7 +38,7 @@ public class UsuarioController {
 		return ser.readUsuario(id);
 	}
 	
-	@GetMapping("chech-status/{id}")
+	@GetMapping("check-status/{id}")
 	public Response getStatus(@PathVariable int id) {
 		return ser.checkEstado(id);
 	}
@@ -58,5 +58,17 @@ public class UsuarioController {
 	public Response putActualizarUsuario(@PathVariable Integer id, @RequestBody Usuario usuario) {		
 		return ser.updateUsuario(id, usuario);
 	}
+	
+	@GetMapping("email/{email}")
+	public Response getCheckEmail(@PathVariable String email){
+		return ser.checkEmail(email);
+	}
+	
+	@GetMapping("documento/{documento}")
+	public Response getCheckDocumen(@PathVariable Integer documento) {
+		return ser.checkDocumento(documento);
+	}
+	
+	
 	
 }
