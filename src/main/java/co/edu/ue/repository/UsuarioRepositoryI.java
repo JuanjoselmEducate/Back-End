@@ -15,7 +15,7 @@ public interface UsuarioRepositoryI {
 	Integer deleteUsuario (Usuario usuario);
 	
 	Usuario findbyEmail(String email);
-	Usuario findbyDocumento(String documento);
+	Usuario findbyDocumento(String documento); 
 
 	List<Usuario> listUsuario();
 }

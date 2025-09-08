@@ -1,6 +1,8 @@
 package co.edu.ue.entity;
 
 import java.io.Serializable;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
@@ -48,10 +50,12 @@ public class Producto implements Serializable {
 
 	//bi-directional many-to-one association to Prediccione
 	@OneToMany(mappedBy="producto")
+    @JsonIgnore
 	private List<Prediccione> predicciones;
 
 	//bi-directional many-to-one association to Produccion
 	@OneToMany(mappedBy="producto")
+    @JsonIgnore
 	private List<Produccion> produccions;
 
 	//bi-directional many-to-one association to Categoria
@@ -64,6 +68,7 @@ public class Producto implements Serializable {
 
 	//bi-directional many-to-one association to Venta
 	@OneToMany(mappedBy="producto")
+    @JsonIgnore
 	private List<Venta> ventas;
 
 	public Producto() {

@@ -7,4 +7,7 @@ import co.edu.ue.entity.Usuario;
 public interface JpaUsuario extends JpaRepository<Usuario, Integer> {
 	Usuario findByEmail (String email);
 	Usuario findByDocumento (String documento);
+	boolean existsByEmail(String email);
+	boolean existsByDocumento(String documento);
+	
 }

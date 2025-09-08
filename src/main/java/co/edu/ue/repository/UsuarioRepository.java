@@ -1,6 +1,7 @@
 package co.edu.ue.repository;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -52,6 +53,5 @@ public class UsuarioRepository implements UsuarioRepositoryI {
 	public Usuario findbyDocumento(String documento) {
 		return jpa.findByDocumento(documento);
 	}
-
 	
 }

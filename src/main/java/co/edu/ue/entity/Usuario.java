@@ -1,6 +1,8 @@
 package co.edu.ue.entity;
 
 import java.io.Serializable;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import java.sql.Timestamp;
 import java.util.List;
@@ -62,34 +64,42 @@ public class Usuario implements Serializable {
 
 	//bi-directional many-to-one association to Categoria
 	@OneToMany(mappedBy="usuario")
+    @JsonIgnore
 	private List<Categoria> categorias;
 
 	//bi-directional many-to-one association to Gasto
 	@OneToMany(mappedBy="usuario")
+    @JsonIgnore
 	private List<Gasto> gastos;
 
 	//bi-directional many-to-one association to Informe
 	@OneToMany(mappedBy="usuario")
+    @JsonIgnore
 	private List<Informe> informes;
 
 	//bi-directional many-to-one association to MetricasSostenibilidad
 	@OneToMany(mappedBy="usuario")
+    @JsonIgnore
 	private List<MetricasSostenibilidad> metricasSostenibilidads;
 
 	//bi-directional many-to-one association to Prediccione
 	@OneToMany(mappedBy="usuario")
+    @JsonIgnore
 	private List<Prediccione> predicciones;
 
 	//bi-directional many-to-one association to Produccion
 	@OneToMany(mappedBy="usuario")
+    @JsonIgnore
 	private List<Produccion> produccions;
 
 	//bi-directional many-to-one association to Producto
 	@OneToMany(mappedBy="usuario")
+    @JsonIgnore
 	private List<Producto> productos;
 
 	//bi-directional many-to-one association to Venta
 	@OneToMany(mappedBy="usuario")
+    @JsonIgnore
 	private List<Venta> ventas;
 
 	public Usuario() {
@@ -179,8 +189,9 @@ public class Usuario implements Serializable {
 		return estado;
 	}
 
-	public void setEstado(byte estado) {
-		this.estado = estado;
+	public void setEstado(boolean estado) {
+		int aux = estado ? 1:0;
+		this.estado = (byte) aux;
 	}
 
 	public Timestamp getCreado() {
@@ -215,19 +226,19 @@ public class Usuario implements Serializable {
 		this.categorias = categorias;
 	}
 
-	public Categoria addCategoria(Categoria categoria) {
-		getCategorias().add(categoria);
-		categoria.setUsuario(this);
-
-		return categoria;
-	}
-
-	public Categoria removeCategoria(Categoria categoria) {
-		getCategorias().remove(categoria);
-		categoria.setUsuario(null);
-
-		return categoria;
-	}
+//	public Categoria addCategoria(Categoria categoria) {
+//		getCategorias().add(categoria);
+//		categoria.setUsuario(this);
+//
+//		return categoria;
+//	}
+//
+//	public Categoria removeCategoria(Categoria categoria) {
+//		getCategorias().remove(categoria);
+//		categoria.setUsuario(null);
+//
+//		return categoria;
+//	}
 
 	public List<Gasto> getGastos() {
 		return this.gastos;
