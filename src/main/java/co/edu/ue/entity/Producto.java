@@ -2,6 +2,7 @@ package co.edu.ue.entity;
 
 import java.io.Serializable;
 
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import java.math.BigDecimal;
@@ -59,11 +60,12 @@ public class Producto implements Serializable {
 	private List<Produccion> produccions;
 
 	//bi-directional many-to-one association to Categoria
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	private Categoria categoria;
 
 	//bi-directional many-to-one association to Usuario
 	@ManyToOne
+	@JsonIgnore
 	private Usuario usuario;
 
 	//bi-directional many-to-one association to Venta
