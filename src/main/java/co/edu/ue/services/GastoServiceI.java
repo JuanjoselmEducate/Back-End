@@ -1,12 +1,13 @@
-package co.edu.ue.repository;
+package co.edu.ue.services;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
-import java.math.BigDecimal;
+
 import co.edu.ue.entity.Gasto;
 
-public interface GastoRepositoryI {
-
+public interface GastoServiceI {
+	
     Gasto insertGasto(Gasto gasto);
     Gasto updateGasto(Gasto gasto);
     int deleteGasto(int gastoId);
@@ -20,4 +21,5 @@ public interface GastoRepositoryI {
 
     BigDecimal totalPorUsuario(int usuarioId);
     BigDecimal totalPorCategoria(int categoriaId);
+
 }
