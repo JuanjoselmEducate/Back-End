@@ -26,6 +26,7 @@ public class Usuario implements Serializable {
 	private String email;	
 	
 	@Column(name="contrasena_hash")
+	@JsonIgnore
 	private String contrasenaHash;
 	
 	@Column(name="primer_nombre")

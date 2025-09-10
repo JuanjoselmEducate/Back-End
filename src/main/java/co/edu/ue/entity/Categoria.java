@@ -3,6 +3,8 @@ package co.edu.ue.entity;
 import java.io.Serializable;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.*;
 import java.sql.Timestamp;
 import java.util.List;
@@ -37,6 +39,7 @@ public class Categoria implements Serializable {
 
 	//bi-directional many-to-one association to Usuario
 	@ManyToOne
+    @JsonIgnore
 	private Usuario usuario;
 
 	//bi-directional many-to-one association to Gasto
@@ -46,6 +49,7 @@ public class Categoria implements Serializable {
 
 	//bi-directional many-to-one association to Producto
 	@OneToMany(mappedBy="categoria")
+	@JsonManagedReference
 	private List<Producto> productos;
 
 	public Categoria() {

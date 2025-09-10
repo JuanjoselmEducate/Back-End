@@ -1,5 +1,7 @@
 package co.edu.ue.services;
 
+import java.sql.Timestamp;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,9 +37,24 @@ public class UsuarioService implements UsuarioServiceI {
 	           rep.findbyDocumento(usuario.getDocumento()) == null) {
 	            String contrasenaHash = hash.hashContrasena(usuario.getContrasenaHash());
 	            usuario.setContrasenaHash(contrasenaHash);
-	            rep.createUsuario(usuario);
-	            menssage = "Usuario creado con exito!";
-	            status = 201;
+	            Response validatedEmail = this.checkEmail(usuario.getEmail());
+	            if(validatedEmail.getStatus() == 200) {
+	            	Response validatedDocumento = this.checkDocumento(Integer.valueOf(usuario.getDocumento()));
+	            	if(validatedDocumento.getStatus() == 200) {
+
+			            rep.createUsuario(usuario);
+			            menssage = "Usuario creado con exito!";
+			            status = 201;	
+
+	            	}else {
+	            		menssage = validatedDocumento.getResponse().toString();
+	            		status = validatedDocumento.getStatus();
+	            	}
+		            
+	            }else {
+	            	menssage = validatedEmail.getResponse().toString();
+	            	status = validatedEmail.getStatus();
+	            }
 	        }else {
 	        	menssage = "Error al crear el usuario, valida el documento o el email.";
 	        	status = 400;
@@ -121,6 +138,10 @@ public class UsuarioService implements UsuarioServiceI {
 	        usuarioExistente.setContrasenaHash(contrasenaHash);
 	    }
 	    
+	    if(usuario.getCreado() == null && usuario.getActualizado() == null ) {
+	    	usuarioExistente.setActualizado(Timestamp.from(Instant.now()));
+	    	usuarioExistente.setCreado(usuarioExistente.getCreado());
+	    }
 	    try {
 	        Usuario usuarioActualizado = rep.updateUsuario(usuarioExistente);
 	        return response.buildResponse("Usuario actualizado exitosamente", 200);
