@@ -1,8 +1,7 @@
 package co.edu.ue.services;
 
-import co.edu.ue.entity.Producto;
 import co.edu.ue.services.business_logic.Response;
-import co.edu.ue.services.business_logic.createI.ProductoCreate;
+import co.edu.ue.services.business_logic.create.ProductoCreate;
 
 public interface ProductoServiceI {
 

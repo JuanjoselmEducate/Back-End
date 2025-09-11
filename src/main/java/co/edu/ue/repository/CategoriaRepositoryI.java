@@ -9,9 +9,9 @@ public interface CategoriaRepositoryI {
     Categoria readCategoria(Integer id);
     Categoria updateCategoria(Categoria categoria);
 
-    Categoria findbyNombre(String nombre);
+    Categoria findbyNombre(String nombre, Integer usuarioId);
 
-    List<Categoria> findAllbyTipo(String tipo);
+    List<Categoria> findbyTipo(String tipo, Integer usuarioId);
     List<Categoria> findbyUsuarioId (Integer usuarioId);
     List<Categoria> listAll();
 }

@@ -29,13 +29,13 @@ public class CategoriaRepository implements CategoriaRepositoryI{
     }
 
     @Override
-    public Categoria findbyNombre(String nombre) {
-        return jpa.findByNombre(nombre);
+    public Categoria findbyNombre(String nombre,  Integer usuarioId) {
+        return jpa.findByNombreAndUsuarioId(nombre, usuarioId);
     }
 
     @Override
-    public List<Categoria> findAllbyTipo(String tipo) {
-        return jpa.findAllByTipo(tipo);
+    public List<Categoria> findbyTipo(String tipo,  Integer usuarioId) {
+        return jpa.findByTipoAndUsuarioId(tipo, usuarioId);
     }
 
     @Override

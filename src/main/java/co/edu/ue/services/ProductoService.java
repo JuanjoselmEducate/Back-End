@@ -4,13 +4,12 @@ import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.time.Instant;
 import java.util.List;
-import java.util.Objects;
 
 import co.edu.ue.entity.Categoria;
 import co.edu.ue.entity.Usuario;
 import co.edu.ue.repository.CategoriaRepositoryI;
 import co.edu.ue.repository.UsuarioRepositoryI;
-import co.edu.ue.services.business_logic.createI.ProductoCreate;
+import co.edu.ue.services.business_logic.create.ProductoCreate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -184,7 +183,9 @@ public class ProductoService implements ProductoServiceI{
 	@Override
 	public Response listProductoByUsuarioId(Integer usuarioId) {
 	    Response response = new Response();
-	    
+	    if(repUsuario.readUsuario(usuarioId) == null) {
+            return response.buildResponse("Usuario no encontrado", 404);
+        }
 	    List<Producto> productos = rep.findbyUsuarioId(usuarioId);
 	    if (productos != null && !productos.isEmpty()) {
 	        return response.buildResponse(productos, 200);

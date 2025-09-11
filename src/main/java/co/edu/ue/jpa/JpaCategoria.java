@@ -6,8 +6,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface JpaCategoria extends JpaRepository<Categoria,Integer> {
-    Categoria findByNombre(String nombre);
+    Categoria findByNombreAndUsuarioId(String nombre, Integer usuarioId);
 
-    List<Categoria> findAllByTipo(String tipo);
+    List<Categoria> findByTipoAndUsuarioId(String tipo, Integer usuarioId);
     List<Categoria> findByUsuarioId (Integer usuarioId);
 }

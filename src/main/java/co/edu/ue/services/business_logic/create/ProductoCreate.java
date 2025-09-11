@@ -1,4 +1,4 @@
-package co.edu.ue.services.business_logic.createI;
+package co.edu.ue.services.business_logic.create;
 
 public class ProductoCreate {
     private String nombre;

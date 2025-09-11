@@ -49,7 +49,7 @@ public class Categoria implements Serializable {
 
 	//bi-directional many-to-one association to Producto
 	@OneToMany(mappedBy="categoria")
-	@JsonManagedReference
+	@JsonIgnore
 	private List<Producto> productos;
 
 	public Categoria() {
