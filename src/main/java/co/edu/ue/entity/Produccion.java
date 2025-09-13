@@ -1,6 +1,9 @@
 package co.edu.ue.entity;
 
 import java.io.Serializable;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIncludeProperties;
 import jakarta.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
@@ -48,10 +51,12 @@ public class Produccion implements Serializable {
 
 	//bi-directional many-to-one association to Producto
 	@ManyToOne
+    @JsonIncludeProperties({"id", "nombreProducto", "sku"})
 	private Producto producto;
 
 	//bi-directional many-to-one association to Usuario
 	@ManyToOne
+    @JsonIgnore
 	private Usuario usuario;
 
 	public Produccion() {
