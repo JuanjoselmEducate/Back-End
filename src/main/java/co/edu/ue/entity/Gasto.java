@@ -6,122 +6,75 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.sql.Timestamp;
 
-
-/**
- * The persistent class for the gastos database table.
- * 
- */
 @Entity
-@Table(name="gastos")
-@NamedQuery(name="Gasto.findAll", query="SELECT g FROM Gasto g")
+@Table(name = "gastos")
+@NamedQuery(name = "Gasto.findAll", query = "SELECT g FROM Gasto g")
 public class Gasto implements Serializable {
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
 
-	@Column(name="desccripcion")
-	private String descripcion;
+    // ✅ usa la columna correcta en la BD
+    @Column(name = "descripcion")
+    private String descripcion;
 
-	@Column(name="monto")
-	private BigDecimal monto;
+    @Column(name = "monto")
+    private BigDecimal monto;
 
-	@Temporal(TemporalType.DATE)
-	@Column(name="fecha_gasto")
-	private Date fechaGasto;
+    @Temporal(TemporalType.DATE)
+    @Column(name = "fecha_gasto")
+    private Date fechaGasto;
 
-	@Column(name="tipo_gasto")
-	private String tipoGasto;
-	
-	@Column(name="notas")
-	@Lob
-	private String notas;
+    @Column(name = "tipo_gasto")
+    private String tipoGasto;
 
-	@Column(name="creado")
-	private Timestamp creado;
+    @Lob
+    @Column(name = "notas")
+    private String notas;
 
-	//bi-directional many-to-one association to Categoria
-	@ManyToOne
-	private Categoria categoria;
+    @Column(name = "creado")
+    private Timestamp creado;
 
-	//bi-directional many-to-one association to Usuario
-	@ManyToOne
-	private Usuario usuario;
+    // 🔑 relación con Categoria usando la FK real de la BD
+    @ManyToOne
+    @JoinColumn(name = "categoria_id")
+    private Categoria categoria;
 
-	public Gasto() {
-	}
+    // 🔑 relación con Usuario usando la FK real de la BD
+    @ManyToOne
+    @JoinColumn(name = "usuario_id")
+    private Usuario usuario;
 
-	public int getId() {
-		return id;
-	}
+    public Gasto() {
+    }
 
-	public void setId(int id) {
-		this.id = id;
-	}
+    // Getters y Setters
+    public int getId() { return id; }
+    public void setId(int id) { this.id = id; }
 
-	public String getDescripcion() {
-		return descripcion;
-	}
+    public String getDescripcion() { return descripcion; }
+    public void setDescripcion(String descripcion) { this.descripcion = descripcion; }
 
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
-	}
+    public BigDecimal getMonto() { return monto; }
+    public void setMonto(BigDecimal monto) { this.monto = monto; }
 
-	public BigDecimal getMonto() {
-		return monto;
-	}
+    public Date getFechaGasto() { return fechaGasto; }
+    public void setFechaGasto(Date fechaGasto) { this.fechaGasto = fechaGasto; }
 
-	public void setMonto(BigDecimal monto) {
-		this.monto = monto;
-	}
+    public String getTipoGasto() { return tipoGasto; }
+    public void setTipoGasto(String tipoGasto) { this.tipoGasto = tipoGasto; }
 
-	public Date getFechaGasto() {
-		return fechaGasto;
-	}
+    public String getNotas() { return notas; }
+    public void setNotas(String notas) { this.notas = notas; }
 
-	public void setFechaGasto(Date fechaGasto) {
-		this.fechaGasto = fechaGasto;
-	}
+    public Timestamp getCreado() { return creado; }
+    public void setCreado(Timestamp creado) { this.creado = creado; }
 
-	public String getTipoGasto() {
-		return tipoGasto;
-	}
+    public Categoria getCategoria() { return categoria; }
+    public void setCategoria(Categoria categoria) { this.categoria = categoria; }
 
-	public void setTipoGasto(String tipoGasto) {
-		this.tipoGasto = tipoGasto;
-	}
-
-	public String getNotas() {
-		return notas;
-	}
-
-	public void setNotas(String notas) {
-		this.notas = notas;
-	}
-
-	public Timestamp getCreado() {
-		return creado;
-	}
-
-	public void setCreado(Timestamp creado) {
-		this.creado = creado;
-	}
-
-	public Categoria getCategoria() {
-		return categoria;
-	}
-
-	public void setCategoria(Categoria categoria) {
-		this.categoria = categoria;
-	}
-
-	public Usuario getUsuario() {
-		return usuario;
-	}
-
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
-	}
-
+    public Usuario getUsuario() { return usuario; }
+    public void setUsuario(Usuario usuario) { this.usuario = usuario; }
 }

@@ -34,10 +34,10 @@ public class Informe implements Serializable {
 	@Column(name="datos_json")
 	private String datosJson;
 
-	@Column(name="crceado")
+	@Column(name="creado")
 	private Timestamp creado;
 
-	//bi-directional many-to-one association to Usuario
+	//bi-directional many-to-one association to User
 	@ManyToOne
 	private Usuario usuario;
 
