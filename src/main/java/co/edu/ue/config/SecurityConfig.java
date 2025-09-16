@@ -40,11 +40,11 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration cfg = new CorsConfiguration();
-        cfg.setAllowedOrigins(List.of("http://localhost:3000")); // Cambia a tu frontend
+        cfg.setAllowedOrigins(List.of("http://localhost:*", "http://127.0.0.1:*:"));
         cfg.setAllowedMethods(List.of("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
         cfg.setAllowedHeaders(List.of("Content-Type", "Authorization", "Accept"));
         cfg.setExposedHeaders(List.of("Set-Cookie"));
-        cfg.setAllowCredentials(true); // Necesario para cookies
+        cfg.setAllowCredentials(true);
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", cfg);
         return source;
