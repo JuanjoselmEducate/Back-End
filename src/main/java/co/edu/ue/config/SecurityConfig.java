@@ -22,7 +22,7 @@
         public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
             http
                     .csrf(csrf -> csrf.disable())
-                    .cors(cors -> cors.disable()) // incluso puedes desactivar CORS si no lo necesitas
+                    .cors(cors -> {})
                     .authorizeHttpRequests(auth -> auth
                             .anyRequest().permitAll()
                     )
@@ -35,8 +35,7 @@
         @Bean
         public CorsConfigurationSource corsConfigurationSource() {
             CorsConfiguration cfg = new CorsConfiguration();
-            cfg.setAllowedOrigins(List.of("http://localhost:63342", "http://127.0.0.1:*", "http://localhost:*"));
-            cfg.setAllowedOriginPatterns(List.of("http://localhost:*", "http://127.0.0.1:*"));
+            cfg.setAllowedOriginPatterns(List.of("*"));
             cfg.setAllowedMethods(List.of("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
             cfg.setAllowedHeaders(List.of("Content-Type", "Authorization", "Accept"));
             cfg.setExposedHeaders(List.of("Set-Cookie"));
