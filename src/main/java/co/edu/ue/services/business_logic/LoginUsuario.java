@@ -41,7 +41,7 @@ public class LoginUsuario implements LoginUsuarioI {
         
         if(usuario_obj != null) {     
             if(hash.hashContrasenaValidated(usuario.getContrasena(), usuario_obj.getContrasenaHash())) {
-                response.setResponse("Acceso exitoso!");
+                response.setResponse(usuario_obj);
                 response.setStatus(200);
             } else {
                 response.setResponse("Contraseña incorrecta.");

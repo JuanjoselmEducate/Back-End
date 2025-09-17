@@ -52,7 +52,7 @@ public class UsuarioController {
                     new UsernamePasswordAuthenticationToken(
                             loginRequest.getEmail(), null, Collections.emptyList()
                     );
-            SecurityContextHolder.getContext().setAuthentication(authToken);
+            //SecurityContextHolder.getContext().setAuthentication(authToken);
         }
 
         return response;
